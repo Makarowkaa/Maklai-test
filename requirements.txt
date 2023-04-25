@@ -1,0 +1,9 @@
+asgiref==3.6.0
+Django==4.2
+pip==23.1.1
+setuptools==67.7.2
+sqlparse==0.4.4
+tzdata==2023.3
+wheel==0.40.0
+djangorestframework==3.14.0
+nltk==3.8.1
