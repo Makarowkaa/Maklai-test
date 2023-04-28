@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from rest_framework.views import APIView
-from paraphrase.paraphrase_logic import generate_paraphrases
+from paraphrase.paraphrase_core.paraphrase_logic import Paraphraser
 
 
 class ParaphraseView(APIView):
@@ -16,6 +16,7 @@ class ParaphraseView(APIView):
         except ValueError:
             return JsonResponse({'error': "The 'limit' parameter must be an integer."}, status=400)
 
-        result = generate_paraphrases(tree, limit)
+        paraphraser = Paraphraser(tree, limit)
+        result = paraphraser.generate_paraphrases()
 
-        return JsonResponse(result, json_dumps_params={'indent': 2, 'ensure_ascii': False}, safe=False)
+        return JsonResponse(result, json_dumps_params={'indent': 2, 'ensure_ascii': False})
